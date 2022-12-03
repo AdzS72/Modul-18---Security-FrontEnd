@@ -34,7 +34,7 @@ const Register = () => {
     // 1. Lakukan Axios POST ke API Register pada backend di bawah ini
     // body yang digunakan adalah username, email, dan password
     try {
-      const url = "http://localhost:3000/register";
+      const url = "https://adzs72-modul-17-security-backend-production.up.railway.app/register";
       const resp = await axios.post(url, {
         username: username,
         email: email,

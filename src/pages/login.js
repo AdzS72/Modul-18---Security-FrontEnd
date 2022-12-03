@@ -33,7 +33,7 @@ const Login = () => {
     // 1. Lakukan Axios POST ke backend pada endpoint /login di bawah ini,
     // dengan parameter 'email' dan 'pass' yang didapat dari form (clue ada pada line 23 dan 24).
     try {
-      const url = "http://localhost:3000/login";
+      const url = "https://adzs72-modul-17-security-backend-production.up.railway.app/login";
       const resp = await axios.post(url, {
         email: email,
         password: password,
