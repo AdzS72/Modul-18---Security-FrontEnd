@@ -11,24 +11,46 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
 const Login = () => {
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+
+    const email = data.get("email");
+    const password = data.get("password");
+
     console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+      email,
+      password,
     });
 
     // Tambahkan kode di bawah ini untuk mengambil data dari localstorage
     // 1. Lakukan Axios POST ke backend pada endpoint /login di bawah ini,
     // dengan parameter 'email' dan 'pass' yang didapat dari form (clue ada pada line 23 dan 24).
-    // simpan 'token' dan 'user' ke localStorage
-    // jika berhasil, set localStorage 'user' dan 'token' serta redirect ke halaman profile
-    // jika gagal, tampilkan alert 'Login Gagal'
+    try {
+      const url = "http://localhost:3000/login";
+      const resp = await axios.post(url, {
+        email: email,
+        password: password,
+      });
+      console.log(resp);
+
+      // simpan 'token' dan 'user' ke localStorage
+      localStorage.setItem("token", resp.data.token);
+      localStorage.setItem("user", resp.data.username);
+
+      // jika berhasil, set localStorage 'user' dan 'token' serta redirect ke halaman profile
+      navigate("/profile");
+
+      // jika gagal, tampilkan alert 'Login Gagal'
+    } catch (e) {
+      alert("Login failed");
+    }
   };
 
   return (
