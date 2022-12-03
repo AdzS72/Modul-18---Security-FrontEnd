@@ -10,6 +10,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { useNavigate } from "react-router";
+require("dotenv").config();
 
 // Abaikan kode di bawah ini
 const theme = createTheme();
@@ -34,7 +35,7 @@ const Register = () => {
     // 1. Lakukan Axios POST ke API Register pada backend di bawah ini
     // body yang digunakan adalah username, email, dan password
     try {
-      const url = "https://adzs72-modul-17-security-backend-production.up.railway.app/register";
+      const url = `${process.env.MODUL17_BACKEND_URL}/register`;
       const resp = await axios.post(url, {
         username: username,
         email: email,

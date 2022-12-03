@@ -12,6 +12,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+require("dotenv").config();
 
 const theme = createTheme();
 
@@ -33,7 +34,7 @@ const Login = () => {
     // 1. Lakukan Axios POST ke backend pada endpoint /login di bawah ini,
     // dengan parameter 'email' dan 'pass' yang didapat dari form (clue ada pada line 23 dan 24).
     try {
-      const url = "https://adzs72-modul-17-security-backend-production.up.railway.app/login";
+      const url = `${process.env.MODUL17_BACKEND_URL}/login`;
       const resp = await axios.post(url, {
         email: email,
         password: password,

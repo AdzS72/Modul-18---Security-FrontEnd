@@ -7,6 +7,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+require("dotenv").config();
 
 // Abaikan kode di bawah ini
 let theme = createTheme({
@@ -48,7 +49,7 @@ const Profile = () => {
     // 2. buat fungsi verifikasi token yang sama seperti di halaman home
     function verifikasi(user, token) {
       axios
-        .post("https://adzs72-modul-17-security-backend-production.up.railway.app/verify", {
+        .post(`${process.env.MODUL17_BACKEND_URL}/verify`, {
           token: token,
         })
         .then(function (response) {
@@ -85,7 +86,7 @@ const Profile = () => {
     // 2. Hit endpoint logout dengan body jwt yang didapat dari localstorage
     //   dan setelah berhasil, beri alert sukses
     await axios
-      .post("https://adzs72-modul-17-security-backend-production.up.railway.app/logout", {
+      .post(`${process.env.MODUL17_BACKEND_URL}/logout`, {
         jwt: localStorage.getItem("token"),
       })
       .then((res) => {
