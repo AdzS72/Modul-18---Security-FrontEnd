@@ -10,7 +10,6 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { useNavigate } from "react-router";
-require("dotenv").config();
 
 // Abaikan kode di bawah ini
 const theme = createTheme();
