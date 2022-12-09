@@ -26,6 +26,7 @@ function Copyright() {
 }
 
 const Home = () => {
+  const Navigate = useNavigate();
   // State untuk mengecek apakah user sudah login atau belum
   const [isLogin, setIsLogin] = React.useState(false);
 
